@@ -10,11 +10,15 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.google.android.gcm.GCMRegistrar;
+
 public class MainActivity extends Activity {
 
 	public static final String APP_URL = "http://chatwithcars.appspot.com";
+	private static final String SENDER_ID = "208496254463";
 
 	private WebView myWebView;
+	private String regId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,19 @@ public class MainActivity extends Activity {
 
 		myWebView.setWebViewClient(new MyWebViewClient());
 		myWebView.setWebViewClient(new WebViewClient());
+		
+		// GCM
+		GCMRegistrar.checkDevice(this);
+		GCMRegistrar.checkManifest(this);	//TODO: can be removed when everything is working
+		
+		regId = GCMRegistrar.getRegistrationId(this);
+		
+//		if (regId.equals(""))	TODO
+		  GCMRegistrar.register(this, SENDER_ID);
+
+//		else
+//		  ;	// Already registered
+		
 	}
 
 	private class MyWebViewClient extends WebViewClient {
