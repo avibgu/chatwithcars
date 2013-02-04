@@ -18,7 +18,7 @@ public class MainActivity extends Activity {
 	private static final String SENDER_ID = "208496254463";
 
 	private WebView myWebView;
-	private String regId;
+	public static String regId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

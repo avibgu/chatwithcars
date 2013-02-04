@@ -24,6 +24,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 	@Override
 	protected void onRegistered(Context context, String regId) {
 		ApplicationServer.sendIDAfterRegistering(regId);
+		MainActivity.regId = regId;
 	}
 
 	/**
@@ -33,6 +34,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 	@Override
 	protected void onUnregistered(Context context, String regId) {
 		ApplicationServer.sendIDAfterUnregistering(regId);
+		MainActivity.regId = null;
 	}
 
 	/**
